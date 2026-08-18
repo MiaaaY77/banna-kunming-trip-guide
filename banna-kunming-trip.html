@@ -898,6 +898,35 @@ box-shadow:0 2px 8px rgba(58,46,31,0.08);
 100%{opacity:0;transform:translateX(-50%) translateY(-10px)}
 }
 
+/* ===== OUTFIT LOOKBOOK ===== */
+.lb-intro{font-size:0.85rem;color:var(--ink-light);margin-bottom:1rem;line-height:1.7}
+.lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem;margin:1.2rem 0}
+.lb-card{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(58,46,31,0.12),0 1px 3px rgba(58,46,31,0.06);transition:transform 0.3s ease,box-shadow 0.3s ease;cursor:pointer;position:relative;border:1px solid rgba(139,115,85,0.1)}
+.lb-card:hover{transform:translateY(-6px) rotate(-0.5deg);box-shadow:0 10px 28px rgba(58,46,31,0.18)}
+.lb-card .lb-img-wrap{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--paper)}
+.lb-card .lb-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.lb-card:hover .lb-img-wrap img{transform:scale(1.06)}
+.lb-card .lb-day-tag{position:absolute;top:10px;left:10px;background:var(--banna);color:#fff;font-size:0.7rem;padding:3px 11px;border-radius:12px;font-weight:700;letter-spacing:0.5px;box-shadow:0 2px 6px rgba(0,0,0,0.2);z-index:2}
+.lb-card .lb-day-tag.km{background:var(--km)}
+.lb-card .lb-day-tag.warm{background:var(--warm)}
+.lb-card .lb-body{padding:0.7rem 0.9rem 0.9rem}
+.lb-card .lb-title{font-family:'NP',sans-serif;font-size:0.92rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem}
+.lb-card .lb-scene{font-size:0.73rem;color:var(--muted);margin-bottom:0.5rem;line-height:1.5}
+.lb-card .lb-items{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.4rem}
+.lb-card .lb-tag{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:2px 7px;font-size:0.68rem;color:var(--ink-light);white-space:nowrap}
+.lb-card .lb-tip{font-size:0.72rem;color:var(--warm);font-weight:600;border-top:1px dashed var(--line);padding-top:0.4rem;margin-top:0.3rem;line-height:1.5}
+.lb-card .lb-zoom{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--ink-light);opacity:0;transition:opacity 0.3s;z-index:2}
+.lb-card:hover .lb-zoom{opacity:1}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.88);display:none;align-items:center;justify-content:center;z-index:99999;padding:2rem;backdrop-filter:blur(4px)}
+.lightbox.active{display:flex;animation:lbFadeIn 0.3s ease}
+@keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:85%;max-height:85vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.5);border:6px solid #fff}
+.lightbox .lb-close{position:absolute;top:1.2rem;right:1.5rem;color:#fff;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.15);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;transition:background 0.2s}
+.lightbox .lb-close:hover{background:rgba(255,255,255,0.3)}
+.lightbox .lb-caption{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-family:'NYCD',cursive;font-size:1.1rem;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.5)}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:680px){
 .cover h1{font-size:1.6rem}
@@ -905,7 +934,7 @@ box-shadow:0 2px 8px rgba(58,46,31,0.08);
 .toc{grid-template-columns:1fr 1fr}
 .day-hd{flex-direction:column}
 .day-num{width:42px;height:42px}
-.food-g,.of-g,.pk-g,.sh-g{grid-template-columns:1fr}
+.food-g,.of-g,.pk-g,.sh-g,.lb-grid{grid-template-columns:1fr}
 html.flip-mode .cover.page-active,
 html.flip-mode section.container.page-active{height:100dvh;padding:16px 20px 100px}
 html.flip-mode footer.page-active{height:auto;min-height:100dvh;padding:20px 20px 40px}
@@ -2903,6 +2932,7 @@ html.flip-mode footer.page-active{height:auto;min-height:100dvh;padding:20px 20p
 <a href="#day5" class="toc-item"><span class="e">⛰️</span> Day5·石林一日游</a>
 <a href="#day6" class="toc-item"><span class="e">🏔️</span> Day6·西山+翠湖+海埂+民族村+南屏街</a>
 <a href="#day7" class="toc-item"><span class="e">🌸</span> Day7·返程</a>
+<a href="#lookbook" class="toc-item"><span class="e">👗</span> 穿搭图册</a>
 </div>
 </section>
 
@@ -4058,6 +4088,161 @@ html.flip-mode footer.page-active{height:auto;min-height:100dvh;padding:20px 20p
 <div><strong>昆明3日总结：</strong>3天覆盖石林（世界遗产）、西山+海埂+民族村（滇池沿线精华）。人均花费约930元，节奏轻松适合慢游。西山+海埂+民族村一天搞定滇池沿线精华，Day6只有3个景点不赶！</div>
 </div>
 </section>
+
+<!-- ===== OUTFIT LOOKBOOK ===== -->
+<section id="lookbook" class="container">
+<div class="sec-title-wrap">
+<div class="sec-icon-box pink">👗</div>
+<span class="sec-title">穿搭图册 <span class="sub">OOTD Lookbook</span></span>
+<span class="sec-dots"></span>
+</div>
+<p class="lb-intro">版纳×昆明7天穿搭方案！按场景搭配，兼顾出片+防蚊+舒适。点击图片可放大查看细节 ✨</p>
+<div class="lb-grid">
+
+<!-- Outfit 1: Day1+Day3 -->
+<div class="lb-card" onclick="openLightbox(this)">
+<div class="lb-img-wrap">
+<span class="lb-day-tag">Day1+3</span>
+<span class="lb-zoom">🔍</span>
+<img src="./assets/outfit-day1-3-white-dress.jpg" alt="白色棉麻连衣裙穿搭" loading="lazy">
+</div>
+<div class="lb-body">
+<div class="lb-title">白色棉麻连衣裙</div>
+<div class="lb-scene">Day1 抵达版纳闲逛 / Day3 植物园看王莲</div>
+<div class="lb-items">
+<span class="lb-tag">白色棉麻长裙</span>
+<span class="lb-tag">草帽</span>
+<span class="lb-tag">墨镜</span>
+<span class="lb-tag">帆布袋</span>
+<span class="lb-tag">小白鞋</span>
+</div>
+<div class="lb-tip">💡 长裙防蚊又出片！白色在热带绿植背景下超清新，Day1和Day3各穿一次</div>
+</div>
+</div>
+
+<!-- Outfit 2: Day2 -->
+<div class="lb-card" onclick="openLightbox(this)">
+<div class="lb-img-wrap">
+<span class="lb-day-tag">Day2</span>
+<span class="lb-zoom">🔍</span>
+<img src="./assets/outfit-day2-mint-dress.jpg" alt="薄荷绿连衣裙穿搭" loading="lazy">
+</div>
+<div class="lb-body">
+<div class="lb-title">薄荷绿连衣裙</div>
+<div class="lb-scene">Day2 曼听御花园+总佛寺+傣族园+原始森林</div>
+<div class="lb-items">
+<span class="lb-tag">薄荷绿棉裙</span>
+<span class="lb-tag">编织草包</span>
+<span class="lb-tag">金饰</span>
+<span class="lb-tag">平底凉鞋</span>
+<span class="lb-tag">复古相机</span>
+</div>
+<div class="lb-tip">💡 绿色系搭配热带花园背景和谐出片，傣族园拍民族风超美</div>
+</div>
+</div>
+
+<!-- Outfit 3: Day3 Night -->
+<div class="lb-card" onclick="openLightbox(this)">
+<div class="lb-img-wrap">
+<span class="lb-day-tag warm">Day3夜</span>
+<span class="lb-zoom">🔍</span>
+<img src="./assets/outfit-day3-night-market.jpg" alt="夜市波西米亚穿搭" loading="lazy">
+</div>
+<div class="lb-body">
+<div class="lb-title">波西米亚夜市风</div>
+<div class="lb-scene">Day3 星光夜市逛吃买买买</div>
+<div class="lb-items">
+<span class="lb-tag">橘色一字肩</span>
+<span class="lb-tag">牛仔短裤</span>
+<span class="lb-tag">民族风项链</span>
+<span class="lb-tag">斜挎包</span>
+<span class="lb-tag">运动鞋</span>
+</div>
+<div class="lb-tip">💡 暖色调配合夜市灯光超上镜！民族饰品就地买更应景</div>
+</div>
+</div>
+
+<!-- Outfit 4: Day4 -->
+<div class="lb-card" onclick="openLightbox(this)">
+<div class="lb-img-wrap">
+<span class="lb-day-tag">Day4</span>
+<span class="lb-zoom">🔍</span>
+<img src="./assets/outfit-day4-transfer.jpg" alt="转场休闲穿搭" loading="lazy">
+</div>
+<div class="lb-body">
+<div class="lb-title">休闲转场风</div>
+<div class="lb-scene">Day4 版纳收尾+高铁转场昆明</div>
+<div class="lb-items">
+<span class="lb-tag">白T恤</span>
+<span class="lb-tag">卡其长裤</span>
+<span class="lb-tag">薄外套</span>
+<span class="lb-tag">一脚蹬</span>
+<span class="lb-tag">双肩包</span>
+</div>
+<div class="lb-tip">💡 长裤防蚊+高铁空调保暖，版纳→昆明温差大(33°C→22°C)记得带外套</div>
+</div>
+</div>
+
+<!-- Outfit 5: Day5-6 -->
+<div class="lb-card" onclick="openLightbox(this)">
+<div class="lb-img-wrap">
+<span class="lb-day-tag km">Day5-6</span>
+<span class="lb-zoom">🔍</span>
+<img src="./assets/outfit-day5-6-kunming.jpg" alt="昆明户外穿搭" loading="lazy">
+</div>
+<div class="lb-body">
+<div class="lb-title">户外运动风</div>
+<div class="lb-scene">Day5 石林一日游 / Day6 西山+海埂+民族村</div>
+<div class="lb-items">
+<span class="lb-tag">亮色上衣</span>
+<span class="lb-tag">速干长裤</span>
+<span class="lb-tag">风衣</span>
+<span class="lb-tag">步行鞋</span>
+<span class="lb-tag">水壶</span>
+</div>
+<div class="lb-tip">💡 石林暴走需舒适鞋！昆明9月早晚凉(15-22°C)，亮色在石林灰岩背景下更出片</div>
+</div>
+</div>
+
+</div>
+
+<!-- 穿搭Tips -->
+<div class="jcard warm" style="margin-top:1.5rem">
+<h4>🎨 穿搭Tips</h4>
+<p>• <strong>版纳篇(Day1-3)</strong>：以浅色系为主，白色/绿色搭配热带绿植最出片。长裙长裤防蚊虫，材质选棉麻透气</p>
+<p>• <strong>转场篇(Day4)</strong>：舒适为主，长裤+薄外套应对温差和高铁空调</p>
+<p>• <strong>昆明篇(Day5-6)</strong>：户外运动风，亮色上衣在石林灰岩背景下更跳。昆明9月早晚凉，备一件风衣</p>
+<p>• <strong>通用</strong>：草帽+墨镜是出片神器，一双舒适运动鞋走全程。夜市可就地买民族风饰品搭配</p>
+</div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+<button class="lb-close" onclick="closeLightbox(event,true)">✕</button>
+<img id="lightbox-img" src="" alt="">
+<div class="lb-caption" id="lightbox-caption"></div>
+</div>
+<script>
+function openLightbox(card){
+  var img=card.querySelector('img');
+  var title=card.querySelector('.lb-title');
+  var lb=document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src=img.src;
+  document.getElementById('lightbox-caption').textContent=title?title.textContent:'';
+  lb.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(e,force){
+  if(force||e.target===e.currentTarget){
+    var lb=document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.body.style.overflow='';
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeLightbox(null,true);
+});
+</script>
 
 <!-- ===== FOOTER ===== -->
 <footer>
